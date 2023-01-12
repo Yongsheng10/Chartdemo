@@ -1,0 +1,777 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script src="./Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.1.0/moment.min.js"></script>
+    <style>
+        li {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <i>
+
+    </i>
+    <span>
+
+    </span>
+    <div class="col-lg-6 col-md-6 col-sm-12" style="padding:4%;" id="con1">
+        <canvas id="chart1"></canvas>
+
+    </div>
+    <br />
+    <div class="col-lg-6 col-md-6 col-sm-12" style="padding:4%;" id="con2">
+        <canvas id="chart2"></canvas>
+
+    </div>
+    <br />
+    <div class="col-lg-6 col-md-6 col-sm-12" style="padding:4%;" id="con3">
+        <canvas id="chart3"></canvas>
+
+    </div>
+    <br />
+    <div class="col-lg-6 col-md-6 col-sm-12" style="padding:4%;" id="con4">
+        <canvas id="chart4"></canvas>
+        <div id="legend4"></div>
+    </div>
+    <br />
+
+    <div class="col-lg-6 col-md-6 col-sm-12" style="padding:4%;" id="con5">
+        <canvas id="chart5"></canvas>
+    </div>
+    <br />
+
+    <div class="col-lg-6 col-md-6 col-sm-12" style="padding:4%;" id="con6">
+        <canvas id="chart6"></canvas>
+        <a id="download"
+           download="ChartImage.jpg"
+           href=""
+           class="btn btn-primary float-right bg-flat-color-1"
+           title="Descargar Gráfico">
+            test
+            <!-- Download Icon -->
+            <i class="fa fa-download"></i>
+        </a>
+    </div>
+    <br />
+    <script>
+
+        var chart1 = new Chart('chart1', {
+
+            type: 'bar',
+            data: {
+                labels: ["2012", "2013", "2014"],
+                datasets: [{
+                    yAxisID:"A",
+                    label: "台積電",
+                    data: [2, 3, 4],
+                    backgroundColor: ["#6eb7d4", "#e4a234", "#d56130"],
+                    order:1
+                },
+                {
+                    yAxisID: "A",
+                    label: "聯電",
+                    data: [1, 5, 7],
+                    backgroundColor: "#6eb7d4",
+                    order:1
+                },
+                {
+                    type:'line',
+                    yAxisID: "B",
+                    label: "日月光",
+                    data: [2, 1, 9],
+                    backgroundColor: "#d56130",
+                    borderColor: "#ffff00",
+                    borderWidth: 5,
+                    fill: false,
+                    lineTension: 0,
+                    order:0
+                }],
+
+
+
+            },
+            options: {
+                title: {
+                    fontSize: 40,
+                    position: "top",//'left','bottom','right'
+                    fontStyle: "bold",//粗體
+                    display: true,
+                    fullSize: false,
+                    text: "報表名稱",
+                },
+                plugins: {
+                    subtitle: {
+                        display: true,
+                        text: 'Custom Chart Subtitle'
+                    }
+                },
+                scales: {
+
+                    yAxes: [{
+                        id:"A",
+                        scaleLabel: {
+                            display: true,
+                            labelString: '金額',
+                            fontSize: 10,
+
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            fontSize: 20,
+
+                        }
+
+                    },
+                    {
+                        id: "B",
+                        scaleLabel: {
+                            display: true,
+                            labelString: '用電量',
+
+                        },
+                        position: 'right',
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 10
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '日期'
+                        },
+
+                    }]
+                },
+            }
+
+
+        });
+        var chart2 = new Chart('chart2', {
+
+            type: 'line',
+            data: {
+                labels: ["2012", "2013", "2014"],
+                datasets: [{
+                    label: "台積電",
+                    data: [2, 3, 4],
+                    backgroundColor: "#e4a234",
+                    fill: false,
+                    borderColor: "#e4a234",
+                    tension: 0
+                },
+                {
+                    label: "聯電",
+                    data: [1, 5, 7],
+                    backgroundColor: "#6eb7d4",
+                    fill: false,
+                    borderColor: "#6eb7d4",
+                    tension: 0
+                },
+                {
+                    label: "日月光",
+                    data: [2, 1, 9],
+                    backgroundColor: "#d56130",
+                    borderColor: "#d56130",
+                    borderWidth: 5,
+                    fill: true,
+                    tension: 0.5 //預設曲線0.5    直線是 0
+                }],
+
+
+
+            },
+            options: {
+                title: {
+                    fontSize: 40,
+                    position: "top",//'left','bottom','right'
+                    fontStyle: "bold",//粗體
+                    display: true,
+                    fullSize: false,
+                    text: "報表名稱",
+                },
+                plugins: {
+                    subtitle: {
+                        display: true,
+                        text: 'Custom Chart Subtitle'
+                    }
+                },
+                scales: {
+
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '金額',
+                            fontSize: 10
+
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            fontSize: 20
+                        }
+
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '日期'
+                        },
+                    }]
+                },
+            }
+
+
+        });
+        var chart3 = new Chart('chart3', {
+
+            type: 'pie',
+            data: {
+                labels: ["台積電", "聯電", "日月光"],
+                datasets: [{
+                    backgroundColor: ["#e4a234", "#6eb7d4", "#d56130"],
+                    data: [2, 3, 4],
+
+                }],
+
+            },
+            options: {
+                tooltips: {
+                    callbacks: {
+                        title: function (tooltipItems, data) {
+
+                            var html = data.labels[tooltipItems[0].index];
+
+                            var total = 0;
+
+                            $(data.datasets[tooltipItems[0].datasetIndex].data).map((index,val) =>
+                            {
+                                total += val;
+                            });
+
+                            html += ": " + (data.datasets[tooltipItems[0].datasetIndex].data[tooltipItems[0].index] / total*100).toFixed(2)+"%";
+                            return html;
+
+                        },
+
+                    },
+                },
+                title: {
+                    fontSize: 40,
+                    position: "top",//'left','bottom','right'
+                    fontStyle: "bold",//粗體
+                    display: true,
+                    fullSize: false,
+                    text: "報表名稱",
+                },
+                plugins: {
+                    subtitle: {
+                        display: true,
+                        text: 'Custom Chart Subtitle'
+                    }
+                },
+                scales: {
+
+                    //yAxes: [{
+                    //    scaleLabel: {
+                    //        display: true,
+                    //        labelString: '金額',
+                    //        fontSize: 10
+
+                    //    },
+                    //    ticks: {
+                    //        beginAtZero: true,
+                    //        min: 0,
+                    //        fontSize: 20
+                    //    }
+
+                    //}],
+                    //xAxes: [{
+                    //    scaleLabel: {
+                    //        display: true,
+                    //        labelString: '日期'
+                    //    },
+                    //}]
+                },
+            }
+
+
+        });
+
+        var dates = [new Date("2019-12-24"), new Date("2019-12-26"), new Date("2019-12-30"), new Date("2020-1-2"), new Date("2020-1-4"), new Date("2020-1-9"), new Date("2020-1-10")];
+        var chart4 = new Chart('chart4', {
+
+            type: 'horizontalBar',
+            data: {
+                //labels: dates.map((d, i) => "Task " + i).slice(1),
+                //datasets: [
+                //  {
+                //      label: 'Tasks',
+                //      data: dates.map((d, i) => i == 0 ? null : [dates[i - 1], d]).slice(1),
+                //      backgroundColor: 'lightblue',
+                //      borderWidth: 1
+                //  }
+                //],
+
+                labels: ["台積電", "聯電", "日月光"],
+                datasets: [
+                    {
+                        label: "2012",//2012
+                        data: [1,1,1],
+                        backgroundColor: ["#e4a234", "#e4a234", "#6eb7d4"],
+                        borderColor: "#e4a234",
+                        fill: false,
+                        pointBackgroundColor: "#e4a234",
+
+                    },
+                    {
+                        label: "2013",//2013
+                        data: [1, 1, 1],
+                        backgroundColor: ["#6eb7d4", "#d56130", "#e4a234"],
+                        borderColor: "#6eb7d4",
+                        fill: false,
+                        pointBackgroundColor: "#6eb7d4",
+                        pointRadius:0
+                    },
+                    {
+                        label: "2014",//2014
+                        data: [1, 1, 2],
+                        backgroundColor: ["#6eb7d4", "#e4a234", "#d56130"],
+                        borderColor:"#d56130",
+                        fill: false,
+                        pointBackgroundColor: "#d56130",
+                        pointRadius: 0,
+                    }],
+
+            },
+            options: {
+
+                legend: {
+                    display: false,
+                    position: 'bottom'
+                },
+                legendCallback: function(chart) {
+                    var text = [];
+                    var colorArr = ["#6eb7d4", "#d56130", "#e4a234"];
+                    text.push('<div class="' + chart.id + '-legend"><span><div class="legendValue">');
+
+                    for (var i = 0; i < colorArr.length; i++) {
+                        text.push('<span style="background-color:' + colorArr[i] + '">&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+                        if (chart.data.datasets[i].label) {
+                            text.push('<span class="label">' + chart.data.datasets[i].label + '</span>');
+                        }
+
+                        text.push('');
+                    }
+
+                    text.push('</div></span><div class="clear"></div>');
+
+                    return text.join('');
+                },
+                tooltips: {
+                    enabled: true,
+                    callbacks: {
+                        labelColor: function (tooltipItem, chart) {
+
+                            return {
+
+                                backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].backgroundColor[tooltipItem.index]
+                            };
+                        },
+                        labelTextColor: function(tooltipItem, chart) {
+                            return '#FFFFFF';
+                        },
+                        label: function (tooltipItem, eachdata) {
+
+                            var label = eachdata.labels[tooltipItem.index] + "年" || '';
+
+                            var data = 0;
+                            //$(eachdata.datasets[tooltipItem.datasetIndex].data).map((index, val) => {
+                            //    data = index;
+                            //    label += eachdata.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + "  (" + (eachdata.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] + ")" + tooltipItem.index);
+
+                            //});
+                            var colorarr = ["#6eb7d4", "#d56130", "#e4a234"];
+                            var levelarr = ["A+", "A", "B"];
+                            var level = "";
+
+                            var colindex = colorarr.indexOf(eachdata.datasets[tooltipItem.datasetIndex].backgroundColor[tooltipItem.index])
+                            level = levelarr[colindex];
+
+                            label =( 2012+tooltipItem.datasetIndex) + ":" + level;
+                            return label;
+                        }
+                    }
+                },
+                title: {
+                    fontSize: 40,
+                    position: "top",//'left','bottom','right'
+                    fontStyle: "bold",//粗體
+                    display: true,
+                    fullSize: false,
+                    text: "報表名稱",
+                },
+                plugins: {
+                    legend: {
+
+                        labels: {
+                            boxWidth: 2
+                        }
+                    },
+                    subtitle: {
+                        display: true,
+                        text: 'Custom Chart Subtitle'
+                    }
+                },
+                scales: {
+
+                    yAxes: [{
+
+                        scaleLabel: {
+                            display: true,
+                            labelString: '廠商',
+                            fontSize: 10
+
+                        },
+                        ticks: {
+
+                            fontSize: 20,
+
+
+
+                        },
+                        stacked: true
+
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '年分'
+                        },
+                        ticks: {
+
+                            min: 0,
+                            fontSize: 20,
+                            callback: function (label, index, labels) {
+
+                                if (index == 0) {
+                                    return 0;
+                                }
+                                else {
+                                    return 2012 + index-1;
+                                }
+                            },
+                            stepSize:1
+                        },
+                        stacked:true
+                    }]
+                },
+            }
+
+
+        });
+        $('#legend4').prepend(chart4.generateLegend());
+
+
+        var data1 = [{ x: 25, y: 10 }, { x: 30, y: -10 }, { x: 15, y: 5 }];
+        var data2 = [{ x: 10, y: 10 }, { x: 22, y: 11 }, { x: 55, y: 15 }];
+        var data3 = [{ x: 13, y: 11 }, { x: 30, y: 6 }, { x: 15, y: 75 }];
+
+        var dataall = data1.concat(data2).concat(data3);
+
+        var count = dataall.length;
+
+        var xAxisValues = dataall.map(m=>m.x);
+        var yAxisValues = dataall.map(m=>m.y);
+
+        var xAxisValuesSum = xAxisValues.reduce((a, b) =>a + b);
+        var yAxisValuesSum = yAxisValues.reduce((a, b) =>a + b);
+
+        var xmin = Math.min.apply(Math, xAxisValues);
+        var xmax = Math.max.apply(Math, xAxisValues);
+
+
+        var xxSum = 0;
+        var xySum = 0;
+
+        for (var i = 0; i < count; i++)
+        {
+            xySum += (xAxisValues[i]*yAxisValues[i]);
+            xxSum += (xAxisValues[i]*xAxisValues[i]);
+        }
+        var slope = (count * xySum - xAxisValuesSum * yAxisValuesSum) / (count * xxSum - xAxisValuesSum * xAxisValuesSum)
+        //slope = 係數
+
+        var yI = yAxisValuesSum / count - slope * xAxisValuesSum / count
+        //=> Y=slope *X+yI
+
+
+        var Rsqure = rSquared(xAxisValues, yAxisValues, yI, slope);
+
+        console.log(xAxisValues);
+
+        var ymin = slope * xmin + yI;
+        var ymax = slope * xmax + yI;
+
+
+        var chart5 = new Chart('chart5', {
+
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: "ic-封測",
+                    data: data1,
+                    labels:["台積電","聯電","日月光"],
+                    backgroundColor: '#e4a234',
+                    yAxesID: 'A'
+                },
+                {
+                    label: "ic-製造",
+                    data: [{ x: 10, y: 10 }, { x: 22, y: 11 }, { x: 55, y: 15 }],
+                    backgroundColor: '#6eb7d4',
+                    yAxesID: 'A',
+
+
+                },
+                {
+                    label: "紡織",
+                    data: [{ x: 13, y: 11 }, { x: 30, y: 6 }, { x: 15, y: 75 }],
+                    backgroundColor: '#d56130',
+                    yAxesID: 'B'
+                },
+                {
+                    type:'line',
+                    label: "趨勢線 R平方 = " + Rsqure.toFixed(2),
+                    data: [{ x: xmin, y: ymin }, { x: xmax, y: ymax }],
+                    borderColor: '#d56130',
+                    yAxesID: 'B',
+                    fill: false,
+                    pointBackgroundColor :"#d56130"
+                }]
+            },
+            options: {
+
+                tooltips: {
+                    callbacks: {
+                        title: function (tooltipItems, data) {
+                            console.log(tooltipItems[0].index);
+                            console.log(data.datasets);
+                            var html = data.datasets[tooltipItems[0].datasetIndex].label  ;
+                            if (data.datasets[tooltipItems[0].datasetIndex].labels!=undefined)
+                            {
+                                html+= ": " + data.datasets[tooltipItems[0].datasetIndex].labels[tooltipItems[0].index];
+                            }
+                            return html;
+
+                        },
+
+                    },
+                },
+                scales: {
+                    yAxes: [{
+                        id: "A",
+                        type: 'linear',
+                        scaleLabel: {
+                            display: true,
+                            labelString: '廢汙水'
+                        },
+                        position: 'left',
+                        gridLines: {
+                            display: true
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                    },
+                    {
+                        id: "B",
+                        scaleLabel: {
+                            display: true,
+                            labelString: '用電量'
+                        },
+                        position: 'right',
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '日期'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+
+                        }
+                    }]
+                },
+
+
+            }
+        });
+
+        var chart6 = new Chart('chart6', {
+
+            type: 'bar',
+            data: {
+                labels: ["2012", "2013", "2014"],
+                datasets: [
+                {
+                    yAxisID: "B",
+                    label: "台積電",
+                    data: [12, 11, 14],
+                    borderColor: "#6eb7d4",
+                    type: 'line',
+                    tension: 0
+                },
+                {
+                    yAxisID: "B",
+                    label: "聯電",
+                    data: [21, 9, 18],
+                    borderColor: "#e4a234",
+                    type: 'line',
+                    tension: 0
+                },
+                {
+                    yAxisID: "B",
+                    label: "日月光",
+                    data: [12, 11, 15],
+                    borderColor: "#d56130",
+                    borderWidth: 5,
+                    type: 'line',
+                    tension:0
+                },
+                {
+                    yAxisID: "A",
+                    label: "台積電",
+                    data: [2, 3, 4],
+                    backgroundColor: ["#6eb7d4", "#e4a234", "#d56130"],
+
+                },
+                {
+                    yAxisID: "A",
+                    label: "聯電",
+                    data: [1, 5, 7],
+                    backgroundColor: "#6eb7d4",
+
+                },
+                {
+                    yAxisID: "A",
+                    label: "日月光",
+                    data: [2, 1, 9],
+                    backgroundColor: "#d56130",
+                    borderColor: "#6eb7d4",
+                    borderWidth: 5,
+
+                }, ],
+
+            },
+            options: {
+                title: {
+                    fontSize: 40,
+                    position: "top",//'left','bottom','right'
+                    fontStyle: "bold",//粗體
+                    display: true,
+                    fullSize: false,
+                    text: "報表名稱",
+                },
+                plugins: {
+                    subtitle: {
+                        display: true,
+                        text: 'Custom Chart Subtitle'
+                    }
+                },
+                scales: {
+
+                    yAxes: [{
+                        label: 'A',
+                        id: "A",
+                        type: 'linear',
+                        scaleLabel: {
+                            display: true,
+                            labelString: '廢汙水'
+                        },
+                        position: 'left',
+                        gridLines: {
+                            display: true
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                        type: 'linear',
+                    },
+                    {
+                        label: 'B',
+                        id: "B",
+                        scaleLabel: {
+                            display: true,
+                            labelString: '用電量'
+                        },
+                        position: 'right',
+                        gridLines: {
+                            display: false
+                        },
+                        type: 'linear',
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: '日期'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+
+                        }
+                    }]
+                },
+            }
+
+
+        });
+        document.getElementById("download").addEventListener('click', function () {
+            /*Get image of canvas element*/
+            var url_base64jp = document.getElementById("chart6").toDataURL("image/jpg");
+            /*get download button (tag: <a></a>) */
+            var a = document.getElementById("download");
+            /*insert chart image url to download button (tag: <a></a>) */
+            window.open(url_base64jp);
+        });
+        function yPrediction(x, yI, slope) {
+            return yI + slope * x;
+        }
+        function rSquared(x, y, yI, slope) {
+
+            let regressionSquaredError = 0
+            let totalSquaredError = 0
+
+
+            let yMean = y.reduce((a, b) => a + b) / y.length
+            console.log(x);
+            console.log(y);
+
+            for (let i = 0; i < x.length; i++) {
+
+                regressionSquaredError += Math.pow(y[i] - yPrediction(x[i], yI, slope), 2)
+                totalSquaredError += Math.pow(y[i] - yMean, 2)
+            }
+            console.log(regressionSquaredError);
+            console.log(totalSquaredError);
+            return 1 - (regressionSquaredError / totalSquaredError)
+
+        };
+
+    </script>
+</body>
+
+</html>
